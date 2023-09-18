@@ -37,27 +37,30 @@ class _tasbeh_tabState extends State<tasbeh_tab> {
       text = AppLocalizations.of(context)!.subhanAllah;
     }
     return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      Stack(
-        children: [
-          Container(
-            child: Align(
-                child: Image.asset(
-                  provider.appTheme == ThemeMode.dark ?
-                  "assets/images/dark_head_of_seb7a.png":"assets/images/head_of_seb7a.png",
-                ),
-                alignment: Alignment.topCenter),
-            margin: EdgeInsets.only(left: 40),
-          ),
-          Container(
-            child: Align(
-                child: Transform.rotate(
-                    angle: angle,
-                    child: Image.asset(provider.appTheme == ThemeMode.dark ?
-                    "assets/images/dark_body_of_seb7a.png":"assets/images/body_of_seb7a.png",)),
-                alignment: Alignment.bottomCenter),
-            margin: EdgeInsets.only(top: 80),
-          ),
-        ],
+      InkWell(
+        onTap: tasbeh,
+        child: Stack(
+          children: [
+            Container(
+              child: Align(
+                  child: Image.asset(
+                    provider.appTheme == ThemeMode.dark ?
+                    "assets/images/dark_head_of_seb7a.png":"assets/images/head_of_seb7a.png",
+                  ),
+                  alignment: Alignment.topCenter),
+              margin: EdgeInsets.only(left: 40),
+            ),
+            Container(
+              child: Align(
+                  child: Transform.rotate(
+                      angle: angle,
+                      child: Image.asset(provider.appTheme == ThemeMode.dark ?
+                      "assets/images/dark_body_of_seb7a.png":"assets/images/body_of_seb7a.png",)),
+                  alignment: Alignment.bottomCenter),
+              margin: EdgeInsets.only(top: 80),
+            ),
+          ],
+        ),
       ),
       Text(
         AppLocalizations.of(context)!.tasbeh_times,
@@ -68,18 +71,16 @@ class _tasbeh_tabState extends State<tasbeh_tab> {
         child: Padding(
           padding: const EdgeInsets.all(30),
           child:
-              Text(counter.toString(), style: provider.appTheme == ThemeMode.dark ?
-              MyCustomTheme().boldMediumText.copyWith(color: MyCustomTheme.whiteColor) :
-              MyCustomTheme().boldMediumText),
+          Text(counter.toString(), style: provider.appTheme == ThemeMode.dark ?
+          MyCustomTheme().boldMediumText.copyWith(color: MyCustomTheme.whiteColor) :
+          MyCustomTheme().boldMediumText),
         ),
         decoration: BoxDecoration(
             color: provider.appTheme == ThemeMode.dark ? MyCustomTheme.secondaryColor.withOpacity(0.5):MyCustomTheme.primaryLightColor.withOpacity(0.5) ,
             borderRadius: BorderRadius.circular(20)),
       ),
-      ElevatedButton(
-          onPressed: tasbeh,
-          style: ElevatedButton.styleFrom(
-              backgroundColor: provider.appTheme == ThemeMode.dark ? MyCustomTheme.yellowColor:MyCustomTheme.primaryLightColor),
+      Container(
+          color: provider.appTheme == ThemeMode.dark ? MyCustomTheme.yellowColor:MyCustomTheme.primaryLightColor,
           child: Text(
             text,
             style: provider.appTheme == ThemeMode.dark ?
